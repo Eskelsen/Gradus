@@ -1,0 +1,18 @@
+{
+  "name": "Gradus",
+  "short_name": "Gradus",
+  "description": "Calculadora de passos para compensar calorias consumidas.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7fbff",
+  "theme_color": "#d7f2ff",
+  "icons": [
+    {
+      "src": "./icon.png",
+      "sizes": "1254x1254",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
