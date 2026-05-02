@@ -336,13 +336,10 @@
       return;
     }
 
-    // Calorias totais
     const caloriasTotal = Math.round((calorias100 / 100) * peso);
 
-    // Passos
     const passos = Math.round(caloriasTotal * 20);
 
-    // Tempo (minutos totais)
     const tempoTotal = passos / 100;
 
     const minutos = Math.floor(tempoTotal);
@@ -356,7 +353,6 @@
   caloriasInput.addEventListener('input', calcular);
   pesoInput.addEventListener('input', calcular);
 
-  // Service Worker
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./sw.js');
   }
