@@ -322,16 +322,33 @@
     tempoEl.textContent = '-';
   }
 
+  function formatarTempo(tempoTotal) {
+    const totalSegundos = Math.round(tempoTotal * 60);
+    const horas = Math.floor(totalSegundos / 3600);
+    const minutos = Math.floor((totalSegundos % 3600) / 60);
+    const segundos = totalSegundos % 60;
+    const partes = [];
+
+    if (horas > 0) {
+      partes.push(`${horas} ${'h'}`);
+    }
+
+    if (minutos > 0 || horas === 0) {
+      partes.push(`${minutos} ${'m'}`);
+    }
+
+    if (segundos > 0 && horas === 0) {
+      partes.push(`${segundos} ${'s'}`);
+    }
+
+    return partes.join(' e ');
+  }
+
   function calcular() {
     const calorias100 = parseFloat(caloriasInput.value);
     const peso = parseFloat(pesoInput.value);
 
-    if (
-      isNaN(calorias100) ||
-      isNaN(peso) ||
-      calorias100 <= 0 ||
-      peso <= 0
-    ) {
+    if (isNaN(calorias100) || isNaN(peso) || calorias100 <= 0 || peso <= 0) {
       limpar();
       return;
     }
@@ -342,12 +359,9 @@
 
     const tempoTotal = passos / 100;
 
-    const minutos = Math.floor(tempoTotal);
-    const segundos = Math.floor((tempoTotal - minutos) * 60);
-
     caloriasTotalEl.textContent = caloriasTotal.toLocaleString('pt-BR');
     passosEl.textContent = passos.toLocaleString('pt-BR');
-    tempoEl.textContent = `${minutos} min ${segundos} s`;
+    tempoEl.textContent = formatarTempo(tempoTotal);
   }
 
   caloriasInput.addEventListener('input', calcular);
